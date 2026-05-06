@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Nav from "@/components/Nav";
@@ -286,7 +285,7 @@ function DemoVideo() {
         >
           <video
             ref={videoRef}
-            src="/assets/Hikari_demo_full.mp4"
+            src="https://cdn.hikariapp.cc/Hikari%20Demo%20Full.mp4"
             muted
             loop
             playsInline
