@@ -121,6 +121,58 @@ ul, ol { list-style: none; }
 .nav-links a.active { color: var(--on-dark); }
 .nav-right { display: flex; align-items: center; gap: 14px; }
 
+/* ── Hamburger ───────────────────────────────────────────────── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center;
+  width: 36px; height: 36px; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+  border-radius: 8px;
+  transition: background 150ms ease;
+}
+.nav-hamburger:hover { background: rgba(255,255,255,0.07); }
+.ham-bar {
+  display: block; width: 20px; height: 1.5px;
+  background: var(--on-dark);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+.ham-bar[data-pos="top"].open  { transform: translateY(6.5px) rotate(45deg); }
+.ham-bar[data-pos="mid"].open  { opacity: 0; transform: scaleX(0); }
+.ham-bar[data-pos="bot"].open  { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── Mobile menu ─────────────────────────────────────────────── */
+.nav-mobile {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.32s cubic-bezier(0.22,1,0.36,1), opacity 0.22s ease;
+  border-top: 1px solid transparent;
+}
+.nav-mobile.open {
+  max-height: 480px;
+  opacity: 1;
+  border-top-color: var(--hairline);
+}
+.nav-mobile-inner {
+  display: flex; flex-direction: column;
+  padding: 12px 24px 20px;
+  gap: 2px;
+}
+.nav-mobile-link {
+  display: block;
+  padding: 12px 4px;
+  font-size: 16px; font-weight: 500;
+  color: var(--body);
+  border-bottom: 1px solid var(--hairline);
+  transition: color 120ms ease;
+}
+.nav-mobile-link:last-of-type { border-bottom: none; }
+.nav-mobile-link:hover,
+.nav-mobile-link.active { color: var(--on-dark); }
+.nav-mobile-cta { margin-top: 16px; }
+
 /* ── Buttons ─────────────────────────────────────────────────── */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
@@ -562,6 +614,8 @@ hr.hairline { border: 0; border-top: 1px solid var(--hairline); margin: 0; }
   .stat-strip .stat:nth-child(2) { border-right: 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
+  .nav-desktop-btn { display: none; }
+  .nav-hamburger { display: flex; }
   .hero-title { font-size: 52px; }
   .subhero h1 { font-size: 44px; }
   .cta-band h2 { font-size: 34px; }

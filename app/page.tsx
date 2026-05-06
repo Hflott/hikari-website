@@ -198,6 +198,7 @@ function DemoVideo() {
   const thumbRef   = useRef<HTMLDivElement>(null);
   const trackRef   = useRef<HTMLDivElement>(null);
   const controlsRef= useRef<HTMLDivElement>(null);
+  const fsButtonRef= useRef<HTMLButtonElement>(null);
   const isDragging = useRef(false);
 
   const applyProgress = (ratio: number) => {
@@ -260,8 +261,24 @@ function DemoVideo() {
     return () => ctx.revert();
   }, []);
 
-  const showControls = () => { if (controlsRef.current) controlsRef.current.style.opacity = "1"; };
-  const hideControls = () => { if (!isDragging.current && controlsRef.current) controlsRef.current.style.opacity = "0"; };
+  const showControls = () => {
+    if (controlsRef.current) controlsRef.current.style.opacity = "1";
+    if (fsButtonRef.current)  fsButtonRef.current.style.opacity  = "1";
+  };
+  const hideControls = () => {
+    if (!isDragging.current) {
+      if (controlsRef.current) controlsRef.current.style.opacity = "0";
+      if (fsButtonRef.current)  fsButtonRef.current.style.opacity  = "0";
+    }
+  };
+
+  const enterFullscreen = () => {
+    const v = videoRef.current as any;
+    if (!v) return;
+    if (v.requestFullscreen)          v.requestFullscreen();
+    else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); // iOS Safari
+    else if (v.webkitRequestFullscreen) v.webkitRequestFullscreen();
+  };
 
   return (
     <section className="demo-section" ref={ref}>
@@ -291,6 +308,27 @@ function DemoVideo() {
             playsInline
             autoPlay
           />
+          <button
+            ref={fsButtonRef}
+            onClick={enterFullscreen}
+            aria-label="Enter fullscreen"
+            style={{
+              position: "absolute", top: 14, right: 14,
+              width: 34, height: 34,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              background: "rgba(0,0,0,0.45)",
+              border: "1px solid rgba(255,255,255,0.15)",
+              borderRadius: 8,
+              color: "#fff",
+              cursor: "pointer",
+              opacity: 0,
+              transition: "opacity 0.2s ease, background 0.15s ease",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.background = "rgba(0,0,0,0.7)")}
+            onMouseLeave={e => (e.currentTarget.style.background = "rgba(0,0,0,0.45)")}
+          >
+            <Icon name="fullscreen" size={16} />
+          </button>
           <div
             ref={controlsRef}
             style={{
