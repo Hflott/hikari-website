@@ -23,7 +23,7 @@ export default function CTABand({
   primaryLabel = "Get the APK",
   primaryHref = "/install",
   secondaryLabel = "Read the source",
-  secondaryHref = "https://github.com",
+  secondaryHref = "https://github.com/Hflott/hikari_app",
 }: CTABandProps) {
   const ref = useRef<HTMLElement>(null);
 

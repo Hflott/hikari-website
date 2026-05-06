@@ -78,8 +78,8 @@ function ContactCards() {
         icon="github"
         title="Bug reports & feature requests"
         descr="The maintainers live on GitHub. File issues with logs and reproduction steps; include your Android TV device and version. Every release ships from this repo."
-        link="https://github.com"
-        linkLabel="github.com/hikari-tv/hikari"
+        link="https://github.com/Hflott/hikari_app"
+        linkLabel="github.com/Hflott/hikari_app"
       />
       <ContactCard
         icon="discord"

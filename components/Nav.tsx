@@ -63,7 +63,7 @@ export default function Nav({ active }: NavProps) {
             </Link>
           ))}
           <a
-            href="https://github.com"
+            href="https://github.com/Hflott/hikari_app"
             target="_blank"
             rel="noopener noreferrer"
             className="nav-link-item"
@@ -106,7 +106,7 @@ export default function Nav({ active }: NavProps) {
             </Link>
           ))}
           <a
-            href="https://github.com"
+            href="https://github.com/Hflott/hikari_app"
             target="_blank"
             rel="noopener noreferrer"
             className="nav-mobile-link"

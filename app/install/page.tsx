@@ -69,10 +69,10 @@ function SubHeroInstall() {
           drop the file on the device, and you&apos;re done.
         </p>
         <div className="cta-row si-cta">
-          <Button size="lg" href="#" icon={<Icon name="download" size={16} />}>
-            Download APK · 28.4 MB
+          <Button size="lg" href="https://github.com/Hflott/hikari_app/releases/download/v1.0.0/hikari_v1.0.0.apk" icon={<Icon name="download" size={16} />}>
+            Download APK
           </Button>
-          <Button size="lg" variant="secondary" href="https://github.com" icon={<Icon name="github" size={16} />}>
+          <Button size="lg" variant="secondary" href="https://github.com/Hflott/hikari_app/releases" icon={<Icon name="github" size={16} />}>
             All releases
           </Button>
         </div>
@@ -115,7 +115,7 @@ function PlatformPicker() {
               <p className="descr">{p.descr}</p>
               <div className="footer-row">
                 <span className="file-meta">{p.file}</span>
-                <Button variant={p.recommended ? "primary" : "secondary"} icon={<Icon name="download" size={14} />}>Download</Button>
+                <Button variant={p.recommended ? "primary" : "secondary"} href="https://github.com/Hflott/hikari_app/releases/download/v1.0.0/hikari_v1.0.0.apk" icon={<Icon name="download" size={14} />}>Download</Button>
               </div>
             </div>
           ))}
@@ -214,9 +214,9 @@ function Releases() {
           ))}
         </div>
         <div style={{ marginTop: 32, display: "flex", gap: 12, flexWrap: "wrap" }}>
-          <Button variant="secondary" href="https://github.com" icon={<Icon name="github" size={14} />}>Browse all releases</Button>
-          <Button variant="secondary" href="https://github.com" icon={<Icon name="doc" size={14} />}>CHANGELOG.md</Button>
-          <Button variant="secondary" href="https://github.com" icon={<Icon name="external" size={14} />}>Build from source</Button>
+          <Button variant="secondary" href="https://github.com/Hflott/hikari_app/releases" icon={<Icon name="github" size={14} />}>Browse all releases</Button>
+          <Button variant="secondary" href="https://github.com/Hflott/hikari_app/blob/main/CHANGELOG.md" icon={<Icon name="doc" size={14} />}>CHANGELOG.md</Button>
+          <Button variant="secondary" href="https://github.com/Hflott/hikari_app#readme" icon={<Icon name="external" size={14} />}>Build from source</Button>
         </div>
       </div>
     </section>

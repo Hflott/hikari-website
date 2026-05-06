@@ -88,7 +88,7 @@ function HeroSection() {
           <Button size="lg" href="/install" icon={<Icon name="download" size={16} />}>
             Download for Android TV
           </Button>
-          <Button size="lg" variant="secondary" href="https://github.com" icon={<Icon name="github" size={16} />}>
+          <Button size="lg" variant="secondary" href="https://github.com/Hflott/hikari_app" icon={<Icon name="github" size={16} />}>
             View on GitHub
           </Button>
         </div>

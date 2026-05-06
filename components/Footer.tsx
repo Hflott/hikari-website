@@ -29,10 +29,10 @@ export default function Footer() {
         <div>
           <h6>Project</h6>
           <ul>
-            <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://github.com/Hflott/hikari_app" target="_blank" rel="noopener">GitHub</a></li>
             <li><a href="/install#releases">Releases</a></li>
-            <li><a href="https://github.com" target="_blank" rel="noopener">Issues</a></li>
-            <li><a href="https://github.com" target="_blank" rel="noopener">Discussions</a></li>
+            <li><a href="https://github.com/Hflott/hikari_app/issues" target="_blank" rel="noopener">Issues</a></li>
+            <li><a href="https://github.com/Hflott/hikari_app/discussions" target="_blank" rel="noopener">Discussions</a></li>
           </ul>
         </div>
 
