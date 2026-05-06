@@ -343,10 +343,11 @@ ul, ol { list-style: none; }
 
 /* ── Feature rows ────────────────────────────────────────────── */
 .feature-detail {
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: 1fr 1.5fr;
   gap: 80px; padding: 96px 0;
   border-bottom: 1px solid var(--hairline); align-items: center;
 }
+.feature-detail.reverse { grid-template-columns: 1.5fr 1fr; }
 .feature-detail.reverse .visual { order: -1; }
 .feature-detail .copy .eyebrow { font-size: 12px; color: var(--mute); letter-spacing: 0.4px; text-transform: uppercase; }
 .feature-detail .copy h2 {
