@@ -51,6 +51,7 @@
 
 html, body, #__next {
   min-height: 100vh;
+  overflow-x: hidden;
   background: var(--canvas);
   color: var(--ink);
   font-family: var(--font-sans);
