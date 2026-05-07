@@ -421,23 +421,29 @@ ul, ol { list-style: none; }
 .checksum-table .row .l { color: var(--mute); }
 
 /* ── Contact page ────────────────────────────────────────────── */
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 16px; margin-top: 48px;
+}
 .contact-card {
   background: var(--surface); border: 1px solid var(--hairline);
   border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 12px;
+  min-height: 220px;
 }
 .contact-card .glyph {
   width: 40px; height: 40px; border-radius: 8px;
   background: var(--surface-card); border: 1px solid var(--hairline);
   display: flex; align-items: center; justify-content: center; color: var(--on-dark);
+  flex-shrink: 0;
 }
-.contact-card h3 { font-size: 18px; font-weight: 500; color: var(--on-dark); margin: 0; letter-spacing: 0.1px; }
-.contact-card p { font-size: 14px; color: var(--body); line-height: 1.6; margin: 0; }
+.contact-card h3 { font-size: 18px; font-weight: 500; color: var(--on-dark); margin: 0; letter-spacing: 0.1px; flex-shrink: 0; }
+.contact-card p { font-size: 14px; color: var(--body); line-height: 1.6; margin: 0; flex: 1; }
 .contact-card .link {
   font-size: 14px; color: var(--on-dark);
   border-bottom: 1px solid var(--hairline-strong);
   align-self: flex-start; font-family: var(--font-mono); letter-spacing: 0.2px;
-  margin-top: auto;
+  flex-shrink: 0;
 }
 .contact-form {
   background: var(--surface); border: 1px solid var(--hairline);
