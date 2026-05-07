@@ -127,16 +127,7 @@ function ContactForm() {
   };
 
   return (
-    <div
-      ref={ref}
-      style={{
-        marginTop: 80,
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: 64,
-        alignItems: "start",
-      }}
-    >
+    <div ref={ref} className="contact-form-grid">
       <div className="form-section">
         <div className="section-eyebrow">Send a message</div>
         <h2 className="section-h" style={{ fontSize: 36 }}>Or, just write.</h2>

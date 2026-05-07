@@ -437,6 +437,7 @@ ul, ol { list-style: none; }
   font-size: 14px; color: var(--on-dark);
   border-bottom: 1px solid var(--hairline-strong);
   align-self: flex-start; font-family: var(--font-mono); letter-spacing: 0.2px;
+  margin-top: auto;
 }
 .contact-form {
   background: var(--surface); border: 1px solid var(--hairline);
@@ -460,6 +461,9 @@ ul, ol { list-style: none; }
 .contact-form .submit-row { display: flex; align-items: center; justify-content: space-between; padding-top: 4px; flex-wrap: wrap; gap: 12px; }
 .contact-form .privacy-note { font-size: 12px; color: var(--mute); }
 .privacy-note a { color: var(--on-dark); border-bottom: 1px solid var(--hairline-strong); }
+.contact-form-grid {
+  margin-top: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+}
 
 /* ── Legal pages ─────────────────────────────────────────────── */
 .legal-body { max-width: 760px; margin: 0 auto; padding: 80px 24px 96px; color: var(--body); }
@@ -613,6 +617,7 @@ hr.hairline { border: 0; border-top: 1px solid var(--hairline); margin: 0; }
   .tiers { grid-template-columns: 1fr; }
   .dl-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
+  .contact-form-grid { grid-template-columns: 1fr; gap: 40px; }
   .stat-strip { grid-template-columns: repeat(2, 1fr); }
   .stat-strip .stat:nth-child(2) { border-right: 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
