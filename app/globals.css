@@ -280,7 +280,7 @@ ul, ol { list-style: none; }
 .stat .lab { font-size: 13px; color: var(--mute); letter-spacing: 0.3px; margin-top: 10px; }
 
 /* ── Feature grid ────────────────────────────────────────────── */
-.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; align-items: stretch; }
 .feature-card {
   background: var(--surface); border: 1px solid var(--hairline);
   border-radius: 10px; padding: 24px;
