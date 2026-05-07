@@ -606,7 +606,8 @@ hr.hairline { border: 0; border-top: 1px solid var(--hairline); margin: 0; }
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 960px) {
-  .feature-detail { grid-template-columns: 1fr; gap: 40px; padding: 64px 0; }
+  .feature-detail,
+  .feature-detail.reverse { grid-template-columns: 1fr; gap: 40px; padding: 64px 0; }
   .feature-detail.reverse .visual { order: 0; }
   .feature-grid { grid-template-columns: repeat(2, 1fr); }
   .tiers { grid-template-columns: 1fr; }
