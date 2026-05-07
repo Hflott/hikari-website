@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Nav from "@/components/Nav";
@@ -44,6 +44,18 @@ const FAQ_ITEMS = [
 
 function SubHeroInstall() {
   const ref = useRef<HTMLElement>(null);
+  const [meta, setMeta] = useState<string>("Checking for latest release…");
+
+  useEffect(() => {
+    fetch("https://api.github.com/repos/Hflott/hikari_app/releases/latest")
+      .then(r => r.json())
+      .then(d => {
+        const date = new Date(d.published_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+        setMeta(`Latest · ${d.tag_name} · released ${date}`);
+      })
+      .catch(() => setMeta("Latest release on GitHub"));
+  }, []);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.timeline({ defaults: { ease: "power3.out" } })
@@ -60,7 +72,7 @@ function SubHeroInstall() {
     <section className="subhero" ref={ref}>
       <div className="glow" />
       <div className="subhero-inner">
-        <div className="eyebrow si-eyebrow">Install · v1.4.0</div>
+        <div className="eyebrow si-eyebrow">Install</div>
         <h1 className="si-h1">
           Sideload it. <span className="hero-title-gradient">Be watching in four minutes.</span>
         </h1>
@@ -78,7 +90,7 @@ function SubHeroInstall() {
         </div>
         <div className="si-meta" style={{ marginTop: 18, fontSize: 13, color: "var(--mute)", display: "flex", alignItems: "center", gap: 10, fontFamily: "var(--font-mono)" }}>
           <span style={{ width: 6, height: 6, background: "var(--accent-green)", borderRadius: 999, flexShrink: 0 }} />
-          Latest · v1.4.0 · released April 22, 2026 · min Android 8.0 (API 26)
+          {meta}
         </div>
       </div>
     </section>
