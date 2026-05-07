@@ -69,7 +69,7 @@ function SubHeroInstall() {
           drop the file on the device, and you&apos;re done.
         </p>
         <div className="cta-row si-cta">
-          <Button size="lg" href="https://github.com/Hflott/hikari_app/releases/download/v1.0.0/hikari_v1.0.0.apk" icon={<Icon name="download" size={16} />}>
+          <Button size="lg" href="https://github.com/Hflott/hikari_app/releases/latest/download/hikari.apk" icon={<Icon name="download" size={16} />}>
             Download APK
           </Button>
           <Button size="lg" variant="secondary" href="https://github.com/Hflott/hikari_app/releases" icon={<Icon name="github" size={16} />}>
@@ -115,7 +115,7 @@ function PlatformPicker() {
               <p className="descr">{p.descr}</p>
               <div className="footer-row">
                 <span className="file-meta">{p.file}</span>
-                <Button variant={p.recommended ? "primary" : "secondary"} href="https://github.com/Hflott/hikari_app/releases/download/v1.0.0/hikari_v1.0.0.apk" icon={<Icon name="download" size={14} />}>Download</Button>
+                <Button variant={p.recommended ? "primary" : "secondary"} href="https://github.com/Hflott/hikari_app/releases/latest/download/hikari.apk" icon={<Icon name="download" size={14} />}>Download</Button>
               </div>
             </div>
           ))}
