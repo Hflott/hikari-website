@@ -128,7 +128,7 @@ function StatStrip() {
 
   const stats = [
     { num: "22k+",      lab: "Anime in the AniList catalogue" },
-    { num: "1080p",     lab: "Native leanback grid" },
+    { num: "Anilist Sync",     lab: "Track your progress easily" },
     { num: "0",         lab: "Accounts. Trackers. Ads." },
     { num: "Apache 2.0",lab: "Open-source license" },
   ];
