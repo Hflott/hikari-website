@@ -431,7 +431,7 @@ function HowItWorks() {
         <div className="install-note hiw-note">
           <Icon name="info" size={16} />
           <div>
-            <em>Hikari does not host video content.</em> It&apos;s a player and a metadata browser.
+            <em>Hikari does not host video content.</em>  It&apos;s a player and a metadata browser.
             Streams come from the addons you choose to install.
           </div>
         </div>
