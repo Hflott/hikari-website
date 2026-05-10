@@ -48,7 +48,6 @@ const FEATURES = [
     bullets: [
       "Today and the next four days, grouped by air time",
       "Strikethrough for episodes that have already aired",
-      "Pink focus highlight on the next episode up",
       "Times shown in your local timezone",
     ],
     image: "/assets/screen-schedule.png",
