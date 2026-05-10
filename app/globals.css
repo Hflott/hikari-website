@@ -423,7 +423,7 @@ ul, ol { list-style: none; }
 /* ── Contact page ────────────────────────────────────────────── */
 .contact-grid {
   display: grid; grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 1fr;
+  grid-auto-rows: auto; align-items: stretch;
   gap: 16px; margin-top: 48px;
 }
 .contact-card {

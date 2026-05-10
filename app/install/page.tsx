@@ -160,7 +160,7 @@ function InstallSteps() {
               <p>Three good options:</p>
               <ul style={{ margin: "10px 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8, color: "var(--body)", fontSize: 14, lineHeight: 1.6 }}>
                 <li style={{ display: "flex", gap: 10, alignItems: "flex-start" }}><Icon name="cast" size={14} style={{ marginTop: 3, flexShrink: 0 }} /> <span><strong style={{ color: "var(--on-dark)", fontWeight: 500 }}>Send Files to TV</strong> — install on your phone and your TV, push the APK over Wi-Fi.</span></li>
-                <li style={{ display: "flex", gap: 10, alignItems: "flex-start" }}><Icon name="code" size={14} style={{ marginTop: 3, flexShrink: 0 }} /> <span><strong style={{ color: "var(--on-dark)", fontWeight: 500 }}>ADB</strong> — <span className="kbd">adb install hikari-1.4.0.apk</span> from any laptop on the same network.</span></li>
+                <li style={{ display: "flex", gap: 10, alignItems: "flex-start" }}><Icon name="code" size={14} style={{ marginTop: 3, flexShrink: 0 }} /> <span><strong style={{ color: "var(--on-dark)", fontWeight: 500 }}>ADB</strong> — <span className="kbd">adb install hikari.apk</span> from any laptop on the same network.</span></li>
                 <li style={{ display: "flex", gap: 10, alignItems: "flex-start" }}><Icon name="download" size={14} style={{ marginTop: 3, flexShrink: 0 }} /> <span><strong style={{ color: "var(--on-dark)", fontWeight: 500 }}>Downloader app</strong> — paste the URL straight on the TV. Easiest on Fire TV.</span></li>
               </ul>
             </div>
@@ -170,7 +170,6 @@ function InstallSteps() {
             <div>
               <h3>Open Hikari, add a streaming addon</h3>
               <p>Launch Hikari from your apps drawer. <span className="kbd">Settings → Addons → Add</span>, paste an addon manifest URL, save. The catalogue lights up immediately.</p>
-              <p style={{ marginTop: 10 }}>Don&apos;t have an addon yet? Start with <span className="kbd">Cinemata</span> for public-domain anime — works without any account.</p>
             </div>
           </div>
         </div>
@@ -183,48 +182,6 @@ function InstallSteps() {
   );
 }
 
-function Releases() {
-  const ref = useRef<HTMLElement>(null);
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".rel-header", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out", stagger: 0.08, scrollTrigger: { trigger: ".rel-header", start: "top 82%", once: true } });
-      gsap.from(".rel-table",  { opacity: 0, y: 20, duration: 0.7, ease: "power3.out", scrollTrigger: { trigger: ".rel-table", start: "top 85%", once: true } });
-    }, ref);
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section className="section" id="releases" style={{ paddingTop: 0 }} ref={ref}>
-      <div className="container">
-        <div className="section-eyebrow rel-header">Releases</div>
-        <h2 className="section-h rel-header">Verify before you install.</h2>
-        <p className="section-sub rel-header">Every release is signed and checksummed. Compare these against the file you downloaded — never install an APK whose hash doesn&apos;t match.</p>
-        <div className="checksum-table rel-table">
-          {[
-            ["version",        "1.4.0 · April 22, 2026"],
-            ["androidtv apk",  "hikari-1.4.0-androidtv.apk · 28,438,912 bytes"],
-            ["sha-256 (atv)",  "9f3c·e8d2·0a14·b779·fc62·31b9·a45e·d038·71f4·92ab·c8e0·5d63·4170·8d2e·b9c1·3a5f"],
-            ["firetv apk",     "hikari-1.4.0-firetv.apk · 28,667,392 bytes"],
-            ["sha-256 (ftv)",  "2b8a·44d7·e1fc·9036·52eb·c7a9·0b14·8df3·6e92·1c47·a058·b2de·39f6·81c4·d7a2·5039"],
-            ["signing key",    "hikari-release.keystore · fingerprint D7:3A:91:F0:6C:48:2B:E5"],
-            ["min android",    "8.0 / Oreo (API 26)"],
-            ["target android", "14 (API 34)"],
-          ].map(([l, v]) => (
-            <div key={l} className="row">
-              <span className="l">{l}</span>
-              <span style={{ wordBreak: "break-all" }}>{v}</span>
-            </div>
-          ))}
-        </div>
-        <div style={{ marginTop: 32, display: "flex", gap: 12, flexWrap: "wrap" }}>
-          <Button variant="secondary" href="https://github.com/Hflott/hikari_app/releases" icon={<Icon name="github" size={14} />}>Browse all releases</Button>
-          <Button variant="secondary" href="https://github.com/Hflott/hikari_app/blob/main/CHANGELOG.md" icon={<Icon name="doc" size={14} />}>CHANGELOG.md</Button>
-          <Button variant="secondary" href="https://github.com/Hflott/hikari_app#readme" icon={<Icon name="external" size={14} />}>Build from source</Button>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function FAQ() {
   const ref = useRef<HTMLElement>(null);
@@ -285,7 +242,6 @@ export default function InstallPage() {
         <SubHeroInstall meta={dlInfo.meta} atvUrl={dlInfo.atv} />
         <PlatformPicker atv={dlInfo.atv} ftv={dlInfo.ftv} />
         <InstallSteps />
-        <Releases />
         <FAQ />
         <CTABand
           headline={<>Four minutes to <span className="grad">first episode</span>.</>}
