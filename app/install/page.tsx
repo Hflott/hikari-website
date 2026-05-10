@@ -15,22 +15,22 @@ const PLATFORMS = [
   {
     name: "Android TV", meta: "Sony, TCL, Hisense, Xiaomi", note: "Native target", recommended: true,
     descr: "The primary build target. Tested on Sony Bravia, Xiaomi Mi Box, Chromecast with Google TV, and the NVIDIA Shield. Install directly via Send Files to TV or ADB.",
-    file: "hikari-1.4.0-androidtv.apk · 28.4 MB", icon: "tv",
+    file: "hikari-1.4.0-androidtv.apk · 28.4 MB", icon: "tv", variant: "atv",
   },
   {
     name: "Google TV", meta: "Chromecast, Onn, TiVo Stream", note: "Same APK",
     descr: "Google TV is Android TV under the hood — the same APK runs unchanged. Surfaces in your apps drawer once installed.",
-    file: "hikari-1.4.0-androidtv.apk · 28.4 MB", icon: "cast",
+    file: "hikari-1.4.0-androidtv.apk · 28.4 MB", icon: "cast", variant: "atv",
   },
   {
     name: "NVIDIA Shield", meta: "Shield TV / Shield Pro", note: "Tested",
     descr: "First-class device. Tombstone-tested on both Shield TV (2019) and Shield Pro. Hardware decode for HEVC and AV1.",
-    file: "hikari-1.4.0-androidtv.apk · 28.4 MB", icon: "shield",
+    file: "hikari-1.4.0-androidtv.apk · 28.4 MB", icon: "shield", variant: "atv",
   },
   {
     name: "Fire TV", meta: "Stick · Cube · TV", note: "Sideload via Downloader",
     descr: "Fire OS is forked Android TV. Hikari runs but isn't on Amazon's appstore — sideload using the Downloader app. Detailed steps below.",
-    file: "hikari-1.4.0-firetv.apk · 28.6 MB", icon: "rocket",
+    file: "hikari-1.4.0-firetv.apk · 28.6 MB", icon: "rocket", variant: "ftv",
   },
 ];
 
@@ -42,19 +42,10 @@ const FAQ_ITEMS = [
   { q: "Does Hikari work on phones or tablets?", a: "Not really — it's built around the leanback grid and the D-pad. It'll launch on a phone but the layouts assume a 1920×1080 TV. A handheld build isn't on the roadmap." },
 ];
 
-function SubHeroInstall() {
-  const ref = useRef<HTMLElement>(null);
-  const [meta, setMeta] = useState<string>("Checking for latest release…");
+const RELEASES_FALLBACK = "https://github.com/Hflott/hikari_app/releases/latest";
 
-  useEffect(() => {
-    fetch("https://api.github.com/repos/Hflott/hikari_app/releases/latest")
-      .then(r => r.json())
-      .then(d => {
-        const date = new Date(d.published_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
-        setMeta(`Latest · ${d.tag_name} · released ${date}`);
-      })
-      .catch(() => setMeta("Latest release on GitHub"));
-  }, []);
+function SubHeroInstall({ meta, atvUrl }: { meta: string; atvUrl: string }) {
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -81,7 +72,7 @@ function SubHeroInstall() {
           drop the file on the device, and you&apos;re done.
         </p>
         <div className="cta-row si-cta">
-          <Button size="lg" href="https://github.com/Hflott/hikari_app/releases/latest/download/hikari.apk" icon={<Icon name="download" size={16} />}>
+          <Button size="lg" href={atvUrl} icon={<Icon name="download" size={16} />}>
             Download APK
           </Button>
           <Button size="lg" variant="secondary" href="https://github.com/Hflott/hikari_app/releases" icon={<Icon name="github" size={16} />}>
@@ -97,7 +88,7 @@ function SubHeroInstall() {
   );
 }
 
-function PlatformPicker() {
+function PlatformPicker({ atv, ftv }: { atv: string; ftv: string }) {
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -127,7 +118,7 @@ function PlatformPicker() {
               <p className="descr">{p.descr}</p>
               <div className="footer-row">
                 <span className="file-meta">{p.file}</span>
-                <Button variant={p.recommended ? "primary" : "secondary"} href="https://github.com/Hflott/hikari_app/releases/latest/download/hikari.apk" icon={<Icon name="download" size={14} />}>Download</Button>
+                <Button variant={p.recommended ? "primary" : "secondary"} href={p.variant === "ftv" ? ftv : atv} icon={<Icon name="download" size={14} />}>Download</Button>
               </div>
             </div>
           ))}
@@ -264,12 +255,35 @@ function FAQ() {
 }
 
 export default function InstallPage() {
+  const [dlInfo, setDlInfo] = useState({
+    meta: "Checking for latest release…",
+    atv: RELEASES_FALLBACK,
+    ftv: RELEASES_FALLBACK,
+  });
+
+  useEffect(() => {
+    fetch("https://api.github.com/repos/Hflott/hikari_app/releases/latest")
+      .then(r => r.json())
+      .then(d => {
+        const date = new Date(d.published_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+        const assets: Array<{ name: string; browser_download_url: string }> = d.assets ?? [];
+        const ftvAsset = assets.find(a => a.name.toLowerCase().includes("firetv"));
+        const atvAsset = assets.find(a => a.name.endsWith(".apk") && !a.name.toLowerCase().includes("firetv"));
+        setDlInfo({
+          meta: `Latest · ${d.tag_name} · released ${date}`,
+          atv: atvAsset?.browser_download_url ?? ftvAsset?.browser_download_url ?? RELEASES_FALLBACK,
+          ftv: ftvAsset?.browser_download_url ?? atvAsset?.browser_download_url ?? RELEASES_FALLBACK,
+        });
+      })
+      .catch(() => setDlInfo(prev => ({ ...prev, meta: "Latest release on GitHub" })));
+  }, []);
+
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Nav active="install" />
       <main style={{ flex: 1 }}>
-        <SubHeroInstall />
-        <PlatformPicker />
+        <SubHeroInstall meta={dlInfo.meta} atvUrl={dlInfo.atv} />
+        <PlatformPicker atv={dlInfo.atv} ftv={dlInfo.ftv} />
         <InstallSteps />
         <Releases />
         <FAQ />
@@ -277,7 +291,7 @@ export default function InstallPage() {
           headline={<>Four minutes to <span className="grad">first episode</span>.</>}
           sub="Pick your platform up top, follow the three steps, you're watching."
           primaryLabel="Download APK · 28.4 MB"
-          primaryHref="#"
+          primaryHref={dlInfo.atv}
           secondaryLabel="See features"
           secondaryHref="/features"
         />
